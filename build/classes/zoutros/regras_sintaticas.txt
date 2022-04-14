@@ -1,0 +1,29 @@
+
+Dada a gramática G
+
+G = (Vn, Vt, P, S)
+
+Vn = E, T, OP
+Vt = id, num, +, -, *, /
+
+Obs.: Vn são não terminais e Vt são terminais;
+E = estado; T = termo; OP = operação;
+____________________________________________
+
+P = dado pelas regras abaixo
+Regras:
+
+1. E ->   E OP T | T
+2. T ->  id | num
+3. OP ->  + | - | * | /
+
+LL(1)
+
+1a. E  -> T E'
+1b. E' -> OP T E' | & (vazio)
+2. T -> id | num
+3. OP -> + | - | * | /
+
+____________________________________________
+
+PRODUZIR GRAFO DE SINTAXE

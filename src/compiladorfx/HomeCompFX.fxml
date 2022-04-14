@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vbMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="839.0" spacing="10.0" style="-fx-background-color: #494D50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="compiladorfx.HomeCompFXController">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="839.0" style="-fx-background-color: #3C3F41;">
+         <children>
+            <Button fx:id="btMinimize" mnemonicParsing="false" onAction="#clkMinimize" prefHeight="32.0" prefWidth="32.0" style="-fx-background-image: url('imagens/minimize.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clkClose" prefHeight="32.0" prefWidth="32.0" style="-fx-background-image: url('imagens/close.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="839.0" spacing="20.0" style="-fx-background-color: #3C3F41;">
+         <children>
+            <Button fx:id="btOpen" mnemonicParsing="false" onAction="#clkOpen" prefHeight="52.0" prefWidth="52.0" style="-fx-background-image: url('imagens/open.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btExecutar" mnemonicParsing="false" onAction="#clkExecutar" prefHeight="52.0" prefWidth="52.0" style="-fx-background-image: url('imagens/run.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btSave" mnemonicParsing="false" onAction="#clkSave" prefHeight="52.0" prefWidth="52.0" style="-fx-background-image: url('imagens/save.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <TextField fx:id="txtEndereco" editable="false" style="-fx-background-color: #565A5D; -fx-text-fill: #bfbfbf;" />
+      <HBox alignment="CENTER" prefHeight="307.0" prefWidth="839.0" style="-fx-background-color: #3C3F41;">
+         <children>
+            <JFXTextArea fx:id="txtNumLinha" editable="false" focusColor="#565a5d" prefHeight="287.0" prefWidth="31.0" style="-fx-background-color: #565A5D; -fx-text-fill: #bfbfbf;" unFocusColor="#565a5d">
+               <HBox.margin>
+                  <Insets bottom="6.0" top="6.0" />
+               </HBox.margin>
+            </JFXTextArea>
+            <VBox fx:id="vbNotSaved" alignment="CENTER" prefHeight="281.0" prefWidth="609.0" spacing="10.0" style="-fx-background-color: transparent; -fx-background-radius: 5px;">
+               <children>
+                  <JFXTextArea fx:id="txtCode" focusColor="#3c3f41" onKeyTyped="#dgtCode" prefHeight="275.0" prefWidth="200.0" style="-fx-text-fill: white; -fx-background-color: #565A5D; -fx-background-radius: 5px;" unFocusColor="#3c3f41">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></JFXTextArea>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="839.0" spacing="10.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
+               <children>
+                  <Label text="JScanner" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="txtJScanner" editable="false" focusColor="#3c3f41" prefHeight="125.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
+               <children>
+                  <Label text="Exceptions" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea fx:id="txtErro" editable="false" focusColor="#3c3f41" prefHeight="125.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -1,0 +1,38 @@
+
+INDENTIFICADORES
+(A..Z|0..9|a..z)*
+ou seja
+Identificadores := LETRA (LETRA | DIGITO)*
+
+NUMEROS
+(0..9)+ (.)
+ou seja
+Numeros := DIGITO+ (. DIGITO*)?
+
+OPERADORES := > | < | = | ! | + | - | * | /
+
+PONTUACAO
+;
+
+OP_ATR
+=
+
+TOKEN SE
+se
+
+TOKEN ENQUANTO
+enquanto
+
+_________________________________________________
+
+a ver
+
+OP_REL
+> | < | >= | <= | == | !=
+
+_________________________________________________
+
+Obs.:
+a..z  -> intervalo da letra 'a' até a letra 'z'
+*     -> 0 ou mais repetições
++     -> 1 ou mais repetições
