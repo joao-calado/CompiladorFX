@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -51,8 +52,6 @@ public class HomeCompFXController implements Initializable {
     @FXML
     private TextField txtEndereco;
     @FXML
-    private VBox vbMain;
-    @FXML
     private JFXTextArea txtErro;
     @FXML
     private JFXTextArea txtJScanner;
@@ -60,6 +59,8 @@ public class HomeCompFXController implements Initializable {
     private VBox vbNotSaved;
     @FXML
     private JFXTextArea txtNumLinha;
+    @FXML
+    private HBox hbSaida;
 
     /**
      * Initializes the controller class.
@@ -118,40 +119,37 @@ public class HomeCompFXController implements Initializable {
         txtErrorAux = "";
         txtJScannerAux = "";
         Label lb = new Label();
-        JFXSnackbar snackbar = new JFXSnackbar(vbMain);
-
+        JFXSnackbar snackbar = new JFXSnackbar(hbSaida);
+        
         if (txtEndereco.getLength() > 0) {
-//            try {
-                JScanner al = new JScanner(txtEndereco.getText());
-                JParser pa = new JParser(al);
-                pa.E();
-                
-                txtJScanner.setText(txtJScannerAux);
-                txtErro.setText(txtErrorAux);
-                
-                System.out.println("Sucesso na Compilação!");
-                lb = new Label("Sucesso na Compilação!");
-                lb.setStyle("-fx-text-fill: white;"
-                        + "-fx-background-color: #008040;"
-                        + "-fx-font-size: 12px;"
-                        + "-fx-padding: 10px;"
-                        + "-fx-background-radius: 5px");
-//            } catch (SyntaxException se) {
-//                System.out.println("Erro Sintatico: " + se.getMessage());
-//                txtJScanner.setText(txtJScannerAux);
-//                txtErro.setText("Erro Sintatico: " + se.getMessage());
-//            } catch (Exception e) {
-//                System.out.println("Erro Generico!!");
-//                txtJScanner.setText(txtJScannerAux);
-//                txtErro.setText("Erro Generico: "+e.getMessage());
-//            }
+            JScanner al = new JScanner(txtEndereco.getText());
+            JParser pa = new JParser(al);
+            pa.E();
+
+            txtJScanner.setText(txtJScannerAux);
+            txtErro.setText(txtErrorAux);
+
+            System.out.println("Sucesso na Compilação!");
+            lb = new Label("Sucesso na Compilação!");
+            lb.setStyle("-fx-text-fill: white;"
+                    + "-fx-background-color: #008040;"
+                    + "-fx-font-size: 12px;"
+                    + "-fx-padding: 10px;"
+                    + "-fx-background-radius: 5px");
+        } else if (txtCode.getText().length() > 0) {
+            lb = new Label("Salve antes de executar");
+            lb.setStyle("-fx-text-fill: white;"
+                    + "-fx-background-color: #ee9600;"
+                    + "-fx-font-size: 12px;"
+                    + "-fx-padding: 10px;"
+                    + "-fx-background-radius: 5px");
         } else {
             lb = new Label("Nenhum arquivo encontrado");
             lb.setStyle("-fx-text-fill: white;"
                     + "-fx-background-color: #cc0000;"
                     + "-fx-font-size: 12px;"
                     + "-fx-padding: 10px;"
-                    + "-fx-background-radius: 5px");
+                    + "-fx-background-radius: 5px;");
         }
         final JFXSnackbar.SnackbarEvent snackbarEvent = new JFXSnackbar.SnackbarEvent(lb, Duration.seconds(2.22), null);
         snackbar.enqueue(snackbarEvent);
@@ -223,7 +221,7 @@ public class HomeCompFXController implements Initializable {
                 fileWriter.close();
 
                 vbNotSaved.setStyle("-fx-background-color: transparent; -fx-background-radius: 5px;");
-                JFXSnackbar snackbar = new JFXSnackbar(vbMain);
+                JFXSnackbar snackbar = new JFXSnackbar(hbSaida);
                 Label lb = new Label("Salvo com Sucesso");
                 lb.setStyle("-fx-text-fill: white;"
                         + "-fx-background-color: #008040;"

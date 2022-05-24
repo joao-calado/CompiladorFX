@@ -163,6 +163,7 @@ public class JScanner {
                         estado = 0;
                         return token;
                     }
+                    break;
             }
         }
     }

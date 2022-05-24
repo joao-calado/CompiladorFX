@@ -18,15 +18,61 @@ public class JParser {
     O Jparser recebe o analisador léxiico como parâmetro
     no contrutor, por a cada procedimento terá de chama-lo
      */
-    public boolean verificaCondicao() {
-        token = scanner.nextToken();
-        if (token.getTipo() == Token.TK_IDENTIFIER || token.getTipo() == Token.TK_INTEIRO) {
-            return true;
-        } else {
-            return false;
+    public void verificaCondicao() {
+        int flag_cond = 0;
+
+        while (token.getTipo() != Token.TK_FIM_CONDICAO && flag_cond != 3) {
+
+            token = scanner.nextToken();
+            System.out.println(token.toString());
+            txtJScannerAux = txtJScannerAux + token.toString() + "\n";
+
+            if (flag_cond == 2 &&(token.getTipo() == Token.TK_IDENTIFIER || token.getTipo() == Token.TK_NUMBER)) {
+                flag_cond = 3;
+            } else if (flag_cond == 2) {
+                txtErrorAux += "Erro Sintático | IDENTIFIER ou NUMBER Esperado!, encontrou: "
+                        + Token.TK_TEXT[token.getTipo()]
+                        + " (" + token.getTexto() + ")"
+                        + " na LINHA " + token.getLine()
+                        + " e COLUNA " + token.getColumn() + "\n\n";
+            }
+            
+            if (flag_cond == 1 && token.getTipo() == Token.TK_OPREL) {
+                flag_cond = 2;
+            } else if (flag_cond == 1) {
+                txtErrorAux += "Erro Sintático | OPERADOR-RELACIONAL Esperado!, encontrou: "
+                        + Token.TK_TEXT[token.getTipo()]
+                        + " (" + token.getTexto() + ")"
+                        + " na LINHA " + token.getLine()
+                        + " e COLUNA " + token.getColumn() + "\n\n";
+            }
+            
+            if (flag_cond == 0 &&(token.getTipo() == Token.TK_IDENTIFIER || token.getTipo() == Token.TK_NUMBER)) {
+                flag_cond = 1;
+            } else if (flag_cond == 0) {
+                txtErrorAux += "Erro Sintático | IDENTIFIER ou NUMBER Esperado!, encontrou: "
+                        + Token.TK_TEXT[token.getTipo()]
+                        + " (" + token.getTexto() + ")"
+                        + " na LINHA " + token.getLine()
+                        + " e COLUNA " + token.getColumn() + "\n\n";
+            }
         }
+        
+        if(flag_cond == 3) {
+            token = scanner.nextToken();
+            txtJScannerAux = txtJScannerAux + token.toString() + "\n";
+            
+            if(token.getTipo() != Token.TK_FIM_CONDICAO) {
+                txtErrorAux += "Erro Sintático | FIM-CONDICAO Esperado!, encontrou: "
+                        + Token.TK_TEXT[token.getTipo()]
+                        + " (" + token.getTexto() + ")"
+                        + " na LINHA " + token.getLine()
+                        + " e COLUNA " + token.getColumn() + "\n\n";
+            }
+        }
+        
     }
-    
+
     public JParser(JScanner scanner) {
         this.scanner = scanner;
     }
@@ -74,18 +120,24 @@ public class JParser {
             }
         }
     }
-    
-    public void SE () {
+
+    public void SE() {
         System.out.println("\nSE ENCONTRADOOOOOOOOOOOOOOOOOOOO\n");
+        int flag_IniCond = 0;
+
         while (token.getTipo() != Token.TK_FIM_BLOCO) {
             token = scanner.nextToken();
-            if (token.getTipo() != Token.TK_INI_CONDICAO) {
+            System.out.println(token.toString());
+            txtJScannerAux = txtJScannerAux + token.toString() + "\n";
+
+            if (flag_IniCond == 0 && token.getTipo() != Token.TK_INI_CONDICAO) {
                 txtErrorAux += "Erro Sintático | INICIO-BLOCO esperado!, mas encontrou: "
                         + token.TK_TEXT[token.getTipo()]
                         + " (" + token.getTexto() + ")"
                         + " na LINHA " + token.getLine()
                         + " e COLUNA " + token.getColumn() + "\n\n";
-            } else {
+            } else if (flag_IniCond == 0) {
+                flag_IniCond = 1;
                 verificaCondicao();
             }
         }
@@ -108,8 +160,7 @@ public class JParser {
 
             if (token.getTipo() == Token.TK_SE) {
                 SE();
-            }
-            else if (token.getTipo() != Token.TK_IDENTIFIER
+            } else if (token.getTipo() != Token.TK_IDENTIFIER
                     && token.getTipo() != Token.TK_NUMBER
                     && token.getTipo() != Token.TK_FIMP
                     && token.getTipo() != Token.TK_SE
