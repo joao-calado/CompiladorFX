@@ -18,6 +18,15 @@ public class JParser {
     O Jparser recebe o analisador léxiico como parâmetro
     no contrutor, por a cada procedimento terá de chama-lo
      */
+    public boolean verificaCondicao() {
+        token = scanner.nextToken();
+        if (token.getTipo() == Token.TK_IDENTIFIER || token.getTipo() == Token.TK_INTEIRO) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public JParser(JScanner scanner) {
         this.scanner = scanner;
     }
@@ -65,6 +74,22 @@ public class JParser {
             }
         }
     }
+    
+    public void SE () {
+        System.out.println("\nSE ENCONTRADOOOOOOOOOOOOOOOOOOOO\n");
+        while (token.getTipo() != Token.TK_FIM_BLOCO) {
+            token = scanner.nextToken();
+            if (token.getTipo() != Token.TK_INI_CONDICAO) {
+                txtErrorAux += "Erro Sintático | INICIO-BLOCO esperado!, mas encontrou: "
+                        + token.TK_TEXT[token.getTipo()]
+                        + " (" + token.getTexto() + ")"
+                        + " na LINHA " + token.getLine()
+                        + " e COLUNA " + token.getColumn() + "\n\n";
+            } else {
+                verificaCondicao();
+            }
+        }
+    }
 
     public void T() {
 
@@ -81,11 +106,16 @@ public class JParser {
             System.out.println(token.toString());
             txtJScannerAux = txtJScannerAux + token.toString() + "\n";
 
-            if (token.getTipo() != Token.TK_IDENTIFIER
+            if (token.getTipo() == Token.TK_SE) {
+                SE();
+            }
+            else if (token.getTipo() != Token.TK_IDENTIFIER
                     && token.getTipo() != Token.TK_NUMBER
                     && token.getTipo() != Token.TK_FIMP
                     && token.getTipo() != Token.TK_SE
-                    && token.getTipo() != Token.TK_ENQUANTO) {
+                    && token.getTipo() != Token.TK_ENQUANTO
+                    && token.getTipo() != Token.TK_INTEIRO
+                    && token.getTipo() != Token.TK_CARACTERE) {
                 txtErrorAux += "Erro Sintático | IDENTIFIER ou NUMBER Esperado!, encontrou: "
                         + Token.TK_TEXT[token.getTipo()]
                         + " (" + token.getTexto() + ")"

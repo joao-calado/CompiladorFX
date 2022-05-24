@@ -20,9 +20,19 @@ public class Token {
     
     public static final int TK_OPREL = 9;
 
+    public static final int TK_INI_CONDICAO = 10;
+    public static final int TK_FIM_CONDICAO = 11;
+    public static final int TK_INI_BLOCO = 12;
+    public static final int TK_FIM_BLOCO = 13;
+    
+    public static final int TK_INTEIRO = 14;
+    public static final int TK_CARACTERE = 15;
+
     public static final String TK_TEXT[] = {
         "IDENTIFIER", "NUMBER", "OPERATOR", "PONCTUACTION", "ASSIGN",
-        "INICIO-PROGRAMA", "FIM-PROGRAMA", "SE", "ENQUANTO", "OPERADOR-RELACIONAL"
+        "INICIO-PROGRAMA", "FIM-PROGRAMA", "SE", "ENQUANTO", "OPERADOR-RELACIONAL",
+        "INICIO-CONDICAO", "FIM-CONDICAO", "INICIO-BLOCO", "FIM-BLOCO", "INTEIRO",
+        "CARACTERE"
     };
 
     private int tipo;

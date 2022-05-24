@@ -23,9 +23,7 @@ import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lexico.JScanner;
-import lexico.LexicalException;
 import sintatico.JParser;
-import sintatico.SyntaxException;
 
 /**
  * FXML Controller class

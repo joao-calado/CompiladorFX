@@ -72,7 +72,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="839.0" spacing="10.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="171.0" prefWidth="839.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
                <children>
@@ -81,7 +81,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <JFXTextArea fx:id="txtJScanner" editable="false" focusColor="#3c3f41" prefHeight="125.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+                  <JFXTextArea fx:id="txtJScanner" editable="false" focusColor="#3c3f41" prefHeight="146.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
@@ -91,7 +91,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <JFXTextArea fx:id="txtErro" editable="false" focusColor="#3c3f41" prefHeight="125.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+                  <JFXTextArea fx:id="txtErro" editable="false" focusColor="#3c3f41" prefHeight="146.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
                </children>
             </VBox>
          </children>

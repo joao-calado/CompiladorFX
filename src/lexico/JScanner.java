@@ -68,6 +68,18 @@ public class JScanner {
                         } else if (isPonctuation(currentChar)) {
                             token.setTipo(Token.TK_PONCTUATION);
                             return token;
+                        } else if (isInicioCondicao(currentChar)) {
+                            token.setTipo(Token.TK_INI_CONDICAO);
+                            return token;
+                        } else if (isFimCondicao(currentChar)) {
+                            token.setTipo(Token.TK_FIM_CONDICAO);
+                            return token;
+                        } else if (isInicioBloco(currentChar)) {
+                            token.setTipo(Token.TK_INI_BLOCO);
+                            return token;
+                        } else if (isFimBloco(currentChar)) {
+                            token.setTipo(Token.TK_FIM_BLOCO);
+                            return token;
                         } else if (isOperatorRel(termo)) {
                             token.setTipo(Token.TK_OPREL);
                             return token;
@@ -82,7 +94,11 @@ public class JScanner {
                     if (isChar(currentChar) || isDigit(currentChar)) {
                         estado = 1;
                         termo += currentChar;
-                    } else if (isSpace(currentChar) || isOperator(currentChar) || isEOF(currentChar) || isPonctuation(currentChar)) {
+                    } else if ( isSpace(currentChar) 
+                                || isOperator(currentChar)
+                                || isEOF(currentChar)
+                                || isPonctuation(currentChar)
+                                || isFimCondicao(currentChar)) {
                         if (!isEOF(currentChar)) {
                             Back();
                         }
@@ -97,6 +113,13 @@ public class JScanner {
                             token.setTipo(Token.TK_ENQUANTO);
                         } else if (isOperatorRel(termo)) {
                             token.setTipo(Token.TK_OPREL);
+                        } else if (isInteiro(termo)) {
+                            token.setTipo(Token.TK_INTEIRO);
+                        } else if (isCaractere(termo)) {
+                            token.setTipo(Token.TK_CARACTERE);
+                        }  else if (isFimCondicao(currentChar)) {
+                            token.setTipo(Token.TK_IDENTIFIER);
+                            estado = 3;
                         } else {
                             token.setTipo(Token.TK_IDENTIFIER);
                         }
@@ -130,8 +153,42 @@ public class JScanner {
                                 + "Coluna: " + coluna + "\n\n";
                     }
                     break;
+                case 3:
+                    if(isFimCondicao(currentChar)) {
+                        token = new Token();
+                        token.setTipo(Token.TK_FIM_CONDICAO);
+                        token.setTexto(""+currentChar);
+                        token.setLine(linha);
+                        token.setColumn(coluna - termo.length());
+                        estado = 0;
+                        return token;
+                    }
             }
         }
+    }
+    
+    private boolean isInicioCondicao(char c) {
+        return c == '(';
+    }
+    
+    private boolean isFimCondicao(char c) {
+        return c == ')';
+    }
+    
+    private boolean isInicioBloco(char c) {
+        return c == '{';
+    }
+    
+    private boolean isFimBloco(char c) {
+        return c == '}';
+    }
+    
+    private boolean isInteiro (String termo) {
+        return termo.equals("inteiro");
+    }
+    
+    private boolean isCaractere (String termo) {
+        return termo.equals("caractere");
     }
 
     private boolean isDigit(char c) {
@@ -151,7 +208,7 @@ public class JScanner {
     }
 
     private boolean isPonctuation(char c) {
-        return c == ';' || c == '(' || c == ')' || c == '{' || c == '}';
+        return c == ';';
     }
 
     private boolean isSpace(char c) {
