@@ -27,6 +27,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lexico.JScanner;
 import lexico.Token;
+import semantico.Semantico;
 import semantico.TabelaSimbolos;
 import sintatico.JParser;
 
@@ -41,6 +42,7 @@ public class HomeCompFXController implements Initializable {
     private int contLinha;
     public static String txtJScannerAux;
     public static String txtErrorAux;
+    public static String txtTabelaSimbolosAux;
     public static String txtNumLinhaAux;
     public static List<Token> listaToken = new ArrayList<>();
 
@@ -66,6 +68,8 @@ public class HomeCompFXController implements Initializable {
     private JFXTextArea txtNumLinha;
     @FXML
     private HBox hbSaida;
+    @FXML
+    private JFXTextArea txtTabelaSimbolos;
 
     /**
      * Initializes the controller class.
@@ -125,19 +129,24 @@ public class HomeCompFXController implements Initializable {
 
         txtErrorAux = "";
         txtJScannerAux = "";
+        txtTabelaSimbolosAux = "";
+        txtErro.setText("");
+        txtJScanner.setText("");
+        txtTabelaSimbolos.setText("");
         Label lb = new Label();
-        JFXSnackbar snackbar = new JFXSnackbar(hbSaida);
+        JFXSnackbar snackbar = new JFXSnackbar(hbSaida); 
         
         if (txtEndereco.getLength() > 0) {
             JScanner al = new JScanner(txtEndereco.getText());
             JParser pa = new JParser(al);
-            TabelaSimbolos ts = new TabelaSimbolos();
+            Semantico sem = new Semantico();
             
             pa.E();
-            ts.execute();
+            sem.execute();
 
             txtJScanner.setText(txtJScannerAux);
             txtErro.setText(txtErrorAux);
+            txtTabelaSimbolos.setText(txtTabelaSimbolosAux);
 
             if (txtErrorAux.length() == 0) {
                 lb = new Label("Sucesso na Compilação!");

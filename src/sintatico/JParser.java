@@ -37,7 +37,9 @@ public class JParser {
 
                 taux = token;
                 token = scanner.nextToken();
-                listaToken.add(token);
+                if (token != null) {
+                    listaToken.add(token);
+                }
                 System.out.println(token.toString());
                 txtJScannerAux = txtJScannerAux + token.toString() + "\n";
 
@@ -75,7 +77,9 @@ public class JParser {
             if (flag_cond == 3) {
                 taux = token;
                 token = scanner.nextToken();
-                listaToken.add(token);
+                if (token != null) {
+                    listaToken.add(token);
+                }
                 txtJScannerAux = txtJScannerAux + token.toString() + "\n";
 
                 if (token.getTipo() != Token.TK_FIM_CONDICAO) {
@@ -96,7 +100,9 @@ public class JParser {
          */
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
         System.out.println(token.toString());
         txtJScannerAux = txtJScannerAux + token.toString() + "\n";
 
@@ -111,7 +117,9 @@ public class JParser {
             while (token.getTipo() != Token.TK_FIM_BLOCO && token.getTipo() != Token.TK_FIMP) {
                 taux = token;
                 token = scanner.nextToken();
-                listaToken.add(token);
+                if (token != null) {
+                    listaToken.add(token);
+                }
                 System.out.println(token.toString());
                 txtJScannerAux = txtJScannerAux + token.toString() + "\n";
 
@@ -178,7 +186,9 @@ public class JParser {
     public void El() {
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
         if (token != null) {
             OP();
             T();
@@ -189,7 +199,9 @@ public class JParser {
     public void I() {
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
 
         if (token != null) {
 
@@ -219,17 +231,21 @@ public class JParser {
     public void SE() {
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
         System.out.println(token.toString());
         txtJScannerAux = txtJScannerAux + token.toString() + "\n";
         verificaCondicao();
         verificaBloco();
     }
-    
+
     public void ENQUANTO() {
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
         System.out.println(token.toString());
         txtJScannerAux = txtJScannerAux + token.toString() + "\n";
         verificaCondicao();
@@ -245,7 +261,9 @@ public class JParser {
 
         taux = token;
         token = scanner.nextToken();
-        listaToken.add(token);
+        if (token != null) {
+            listaToken.add(token);
+        }
 
         if (token != null) {
             System.out.println(token.toString());

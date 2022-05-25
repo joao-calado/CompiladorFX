@@ -72,7 +72,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="hbSaida" alignment="CENTER" prefHeight="160.0" prefWidth="915.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="160.0" prefWidth="915.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
                <children>
@@ -96,16 +96,16 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="160.0" prefWidth="915.0">
+      <HBox fx:id="hbSaida" alignment="CENTER" prefHeight="160.0" prefWidth="410.0" spacing="10.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="128.0" prefWidth="418.0">
+            <VBox alignment="TOP_CENTER" prefHeight="128.0" prefWidth="418.0" spacing="5.0">
                <children>
                   <Label text="Tabela de Simbolos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <JFXTextArea focusColor="#3c3f41" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+                  <JFXTextArea fx:id="txtTabelaSimbolos" focusColor="#3c3f41" prefHeight="146.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
                </children>
             </VBox>
          </children>

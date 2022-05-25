@@ -1,8 +1,5 @@
 package semantico;
 
-import static compiladorfx.HomeCompFXController.listaToken;
-import static compiladorfx.HomeCompFXController.txtErrorAux;
-import java.util.List;
 import lexico.Token;
 
 /**
@@ -60,34 +57,7 @@ public class TabelaSimbolos {
 
     @Override
     public String toString() {
-        return "| Cadeia=" + cadeia + " | Tipo=" + tipo + " | Valor=" + valor + "\n"
-                + "___________________________________________________________________\n";
+        return "Cadeia: " + cadeia + " | Tipo: " + tipo + " | Valor: " + valor + "\n"
+                + "-----------------------------------------------------------------------------------\n";
     }
-
-    public void execute() {
-        TabelaSimbolos simb = new TabelaSimbolos();
-        Token tk;
-
-        for (int i = 0; i <= listaToken.size(); i++) {
-            tk = listaToken.get(i);
-            // declaração de caractere
-            if (tk.getTipo() == Token.TK_CARACTERE) {
-                tk = listaToken.get(i + 1);
-                simb.setCadeia(tk.getTexto());
-                simb.setTipo(Token.TK_TEXT[tk.getTipo()]);
-                // caractere foi inicializado?
-                if (listaToken.get(i + 2).getTipo() == Token.TK_ASSIGN) {
-                    if(listaToken.get(i + 3).getTipo() == Token.TK_IDENTIFIER) {
-                        
-                    }
-                } else {
-                    txtErrorAux += "Erro Semântico | "
-                            + simb.getTipo() + " "
-                            + simb.getCadeia() + " "
-                            + "não inicializado!\n\n";
-                }
-            }
-        }
-    }
-
 }
