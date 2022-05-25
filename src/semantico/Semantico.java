@@ -70,6 +70,13 @@ public class Semantico {
                                 + tk.getTexto()
                                 + " não declarado\n\n";
                     } else {
+                        if (busca(listaToken.get(i - 2).getTexto()) == null) {
+                            txtErrorAux += "Erro Semântico | "
+                                + "não é possível atribuir valor a uma variável não declarada!\n\n";
+                        } else if (busca(listaToken.get(i - 2).getTexto()).getTipo().equals("INTEIRO")) {
+                            txtErrorAux += "Erro Semântico | "
+                                + "não é possível atribuir valor CARACTERE a uma variável INTEIRO!\n\n";
+                        }
                         alterar(listaToken.get(i - 2).getTexto(), tk.getTexto());
                     }
                 } //else {
