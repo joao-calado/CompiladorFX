@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="839.0" spacing="10.0" style="-fx-background-color: #494D50; -fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="compiladorfx.HomeCompFXController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="915.0" spacing="10.0" style="-fx-background-color: #494D50; -fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="compiladorfx.HomeCompFXController">
    <children>
       <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="839.0" style="-fx-background-color: #3C3F41;">
          <children>
@@ -49,7 +49,7 @@
          </padding>
       </HBox>
       <TextField fx:id="txtEndereco" editable="false" style="-fx-background-color: #565A5D; -fx-text-fill: #bfbfbf;" />
-      <HBox alignment="CENTER" prefHeight="307.0" prefWidth="839.0" style="-fx-background-color: #3C3F41;">
+      <HBox alignment="CENTER" prefHeight="282.0" prefWidth="915.0" style="-fx-background-color: #3C3F41;">
          <children>
             <JFXTextArea fx:id="txtNumLinha" editable="false" focusColor="#565a5d" prefHeight="287.0" prefWidth="31.0" style="-fx-background-color: #565A5D; -fx-text-fill: #bfbfbf;" unFocusColor="#565a5d">
                <HBox.margin>
@@ -72,7 +72,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="hbSaida" alignment="CENTER_LEFT" prefHeight="171.0" prefWidth="839.0" spacing="10.0">
+      <HBox fx:id="hbSaida" alignment="CENTER" prefHeight="160.0" prefWidth="915.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="146.0" prefWidth="410.0" spacing="5.0">
                <children>
@@ -92,6 +92,20 @@
                      </font>
                   </Label>
                   <JFXTextArea fx:id="txtErro" editable="false" focusColor="#3c3f41" prefHeight="146.0" prefWidth="410.0" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="160.0" prefWidth="915.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="128.0" prefWidth="418.0">
+               <children>
+                  <Label text="Tabela de Simbolos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <JFXTextArea focusColor="#3c3f41" style="-fx-background-color: #3C3F41; -fx-text-fill: #b3b3b3;" unFocusColor="#3c3f41" />
                </children>
             </VBox>
          </children>

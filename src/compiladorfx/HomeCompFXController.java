@@ -8,6 +8,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +26,8 @@ import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import lexico.JScanner;
+import lexico.Token;
+import semantico.TabelaSimbolos;
 import sintatico.JParser;
 
 /**
@@ -38,6 +42,7 @@ public class HomeCompFXController implements Initializable {
     public static String txtJScannerAux;
     public static String txtErrorAux;
     public static String txtNumLinhaAux;
+    public static List<Token> listaToken = new ArrayList<>();
 
     @FXML
     private Button btMinimize;
@@ -89,6 +94,8 @@ public class HomeCompFXController implements Initializable {
         txtErrorAux = "";
         txtNumLinhaAux = "";
         tooltipInitialize();
+        
+        //txtEndereco.setText("C:\\Users\\calado\\Documents\\input_SE.txt");
     }
 
     @FXML
@@ -124,18 +131,30 @@ public class HomeCompFXController implements Initializable {
         if (txtEndereco.getLength() > 0) {
             JScanner al = new JScanner(txtEndereco.getText());
             JParser pa = new JParser(al);
+            TabelaSimbolos ts = new TabelaSimbolos();
+            
             pa.E();
+            ts.execute();
 
             txtJScanner.setText(txtJScannerAux);
             txtErro.setText(txtErrorAux);
 
-            System.out.println("Sucesso na Compilação!");
-            lb = new Label("Sucesso na Compilação!");
-            lb.setStyle("-fx-text-fill: white;"
-                    + "-fx-background-color: #008040;"
-                    + "-fx-font-size: 12px;"
-                    + "-fx-padding: 10px;"
-                    + "-fx-background-radius: 5px");
+            if (txtErrorAux.length() == 0) {
+                lb = new Label("Sucesso na Compilação!");
+                lb.setStyle("-fx-text-fill: white;"
+                        + "-fx-background-color: #008040;"
+                        + "-fx-font-size: 12px;"
+                        + "-fx-padding: 10px;"
+                        + "-fx-background-radius: 5px");
+            } else {
+                lb = new Label("Algumas exceções encontradas!");
+                lb.setStyle("-fx-text-fill: white;"
+                        + "-fx-background-color: #cc0000;"
+                        + "-fx-font-size: 12px;"
+                        + "-fx-padding: 10px;"
+                        + "-fx-background-radius: 5px");
+            }
+
         } else if (txtCode.getText().length() > 0) {
             lb = new Label("Salve antes de executar");
             lb.setStyle("-fx-text-fill: white;"
